@@ -1,0 +1,157 @@
+usage: dom4 \[option(s)] [gamename]
+options:
+-v  --version       Print version number and exit
+-d                  Increase debug level
+-g  --host          Generate new turn and exit
+    --verify        Verify all 2h-files and exit (creates .chk files)
+    --statfile      Create a player info file after each turn (stats.txt)
+    --scoredump     Create a score file after each turn (scores.html)
+    --finalhost     Generate new turn, send out final score msg and exit
+-c  --nocredits     Disables the end credits
+    --noedgescroll  Disables edge scrolling
+    --edgescroll    Enables edge scrolling in fullscreen mode
+    --winedgescroll Enables edge scrolling always
+    --askifplayed   Will ask if you want to redo turn if possible
+    --noshowscouts  Do not show allied scouts on map
+    --autoorder     Put new mages on research by default
+    --maxunits X    Sets max nbr of units in a game (default and max 250000)
+    --listnations   Prints a list of all nation numbers
+    --multiai X     Create up to X processes for AI computations (0=off)
+******* Network Options *******
+-C  --tcpclient     Connect to a Dominions multiplayer server
+-S  --tcpserver     Start a Dominions multiplayer server
+    --tcpquery      Query Dominions server about game status and exit
+    --ipadr XXX     Use this IP-adr when connecting to server
+    --port X        Use this port nbr
+    --preexec CMD   Execute this command before each new turn
+    --postexec CMD  Execute this command after each new turn
+-t  --hosttime X Y  Host on day X (0=sunday) hour Y (0-23)
+    --minutes X     Set host interval in minutes
+    --hours X       Set host interval in hours
+    --pauseday X    Stop timer on this day (0=sunday)
+    --timeleft X    Hours until first host (default = full host interval)
+    --noquickhost   Don't host just because all turns are done
+    --maxholdups X  Quickhost disregards players that have stalled last X turns
+-n  --nonationsel   No nation selection when resuming a network game
+-o  --onserver      I'm playing on the server, don't ask
+    --noclientstart Clients cannot start the game during Choose Participants
+    --uploadtime X  Game is created after this many minutes.
+    --uploadmaxp X  Game is created if this many players join.
+    --closed X      Nation closed X=nation number (5-199)
+    --easyai X      Nation ai controlled X=nation number (5-199)
+    --normai X      Nation ai controlled X=nation number (5-199)
+    --diffai X      Nation ai controlled X=nation number (5-199)
+    --mightyai X    Nation ai controlled X=nation number (5-199)
+    --masterai X    Nation ai controlled X=nation number (5-199)
+    --impai X       Nation ai controlled X=nation number (5-199)
+    --team X Y Z    X=nation, Y=team, Z=type (type: 1=pretender, 2=disciple)
+    --statuspage XX Create html page that shows who needs to play their turn
+    --nodownlmods   Don't download mods from game server automatically
+******* New Game Options *******
+    --mapfile XXX   Filename of map. E.g. eye.map
+    --randmap X     Make and use a random map with X prov per player (10,15,20)
+    --research X    Research difficulty -1 to 3 (default 1)
+    --hofsize X     Size of Hall of Fame 5-15 (default 10)
+    --indepstr X    Strength of Independents 0-9 (default 5)
+    --magicsites X  Magic site frequency 0-75 (default 40)
+    --eventrarity X Random event rarity 1-2, 1=common 2=rare
+    --richness X    Money multiple 50-300 (default 100)
+    --resources X   Resource multiple 50-300 (default 100)
+    --supplies X    Supply multiple 50-300 (default 100)
+    --masterpass XX Master password. E.g. masterblaster
+    --startprov X   Number of starting provinces (1-9)
+    --renaming      Enable commander renaming
+    --scoregraphs   Enable score graphs during play
+    --nonationinfo  No info at all on other nations
+    --nocheatdet    Turns off cheat detection
+    --era X         New game created in this era (1-3)
+    --nomods        Disable all mods
+-M  --enablemod XXX Enable the mod with filename XXX
+    --noartrest     Players can create more than one artifact per turn
+    --teamgame      Disciple game, multiple players on same team
+    --clustered     Clustered start positions for team game
+    --storyevents   Enable story events
+    --newgame       Create a new game and exit (for scripted game creation)
+******* New Game Victory Condition *******
+    --conqall       Win by eliminating all opponents only
+    --thrones X Y Z Number of thrones of level 1, 2 and 3
+    --requiredap X  Ascension points required for victory (def total-1)
+    --totalvp X     Vic. points available in the world 0-25
+    --capitalvp     One extra victory per capital
+    --requiredvp X  Vic. points required for victory (def total/2)
+    --summervp      Vic. points are accumulated each summer
+******* Random Map Options *******
+    --makemap XXX   Generate a random map with filename XXX and exit
+    --riverpart X   0-1000, 0=no rivers (default 50)
+    --seapart X     Percent of map that is below water level (default 30)
+    --mountpart X   Percent of map that is mountains (default 20)
+    --forestpart X  Percent of lands that are forests (default 20)
+    --farmpart X    Percent of lands that are farm lands (default 15)
+    --wastepart X   Percent of lands that are wastes (default 10)
+    --swamppart X   Percent of lands that are swamps (default 10)
+    --cavepart X    Percent of lands that are caves (default 3)
+    --mapaa         Enable antialiasing for random maps
+    --mapsize W H   Set width and height of random map (default 1600 1200)
+    --mapprov X     Set number of provinces (default 150)
+    --passmount     Don't use impassable mountains on random maps
+    --mapgcol R G B A   Ground color 0-255 (default 170 146 116 255)
+    --mapscol R G B A   Sea color 0-255 (default 54 54 130 255)
+    --mapdscol R G B A  Deep Sea color 0-255 (default depending on mapscol)
+    --mapccol R G B A   Coast color 0-255 (default depending on mapscol)
+    --mapbcol R G B A   Ground border color 0-255
+    --mapsbcol R G B A  Sea border color 0-255
+    --mapnoise X    Ground color noise 0-255 (default 15)
+    --mapdirt X     Amount of dirt blobs (default 100)
+    --mapdirtcol X  Color variance of dirt blobs (default 5)
+    --mapdirtsize X Size of dirt blobs (default 100)
+    --borderwidth X Border width 0-500 (default 100)
+    --hills X       Number of Hills/Craters (default 150)
+    --rugedness X   Rugedness 0-100 (default 30)
+    --seasize X     Sea size, 100=normal land size (default 400)
+    --mapnospr      Don't draw any sprites on the map
+    --vwrap         Make map wrap north/south
+    --nohwrap       Make map not wrap east/west
+    --mapbunch X    When making a bunch, make this many maps (default 12)
+    --quiet         Don't print stuff
+******* Graphics Options *******
+-w  --window        Run Dominions 4 in a window
+-u  --fullscreen    Use the entire screen
+    --bitplanes X   Try to use a color depth of X bits per pixel
+    --zbuffer X     Try to use a depth buffer of X bits per pixel (default 24)
+-T  --textonly      Use this with --tcpserver to get graphicless server
+    --gamma X       Set gamma function (brightness) 0.1 - 5.0 (default 1.0)
+    --opacity X     Set gui opacity 0 - 100
+-r  --res X Y       Set screen resolution / window size (default 1024 768)
+    --animback      Use animated backgrounds
+-a  --noanimback    Don't use animated backgrounds
+    --fade          Use fade effects
+-f  --nofade        No fade effects
+    --nopopups      No helpful popups
+    --maxfps X      Maximum nbr of frames per second (default 60)
+    --filtering X   Quality of OpenGL filtering 0-3 (default 2)
+    --maxtexsize X  Max texture size in pixels 8-4096 (default unlimited)
+    --texqual X     Texture quality 1-5 (default 3)
+    --nolightfx     No light effects in battles
+    --partamount X  Max nbr of particles 0-9 (0=none, 4=default, 9=max)
+    --noarcade      Don't draw floating damage numbers
+    --nonetinfo     Don't draw timer and flags during network play
+    --noglext       Don't use any OpenGL extensions
+    --vsync         Enable vsync
+-V  --novsync       Disable vsync
+-x  --fastgrx       Faster and simpler graphics
+    --gfxlevel X    Graphics level 5-20 (default 10, 14 = very high)
+    --benchmark     Run a graphics benchmark and exit
+******* Audio Options *******
+-s  --nosound       No sound effects or music
+-m  --nomusic       No music
+    --musicvol X    Set music volume, 0-100 (default 100)
+    --fxvol X       Set sound effect volume, 0-100 (default 100)
+    --clickvol X    Set mouse click volume, 0-100 (default 25)
+    --noturnsound   Don't play a sound when a new turn arrives (network only)
+    --defsound      Use default sound device
+    --jack          Route sound through JACK sound server
+    --pulseaudio    Route sound through pulse audio
+    --arts          Route sound through aRts
+    --alsa          Use direct alsa sound output
+    --oss           Use direct oss sound output
+Example: dom4 -wm   Run Dominions 4 in a window and without music
