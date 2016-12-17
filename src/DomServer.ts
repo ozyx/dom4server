@@ -5,14 +5,15 @@ export class DomServer {
     private dom4: string;
 
     constructor(domPath: string) {
-        let version: string = "dom4_x86";
-        this.dom4 = path.resolve(`${domPath}${version}`);
+        this.dom4 = path.resolve(`${domPath}dom4.sh`);
     }
 
-    public help(): void {
+    public version(): void {
         let dominions = child_process.spawn(`${this.dom4}`, ["--version"]);
         dominions.stdout.on("data", (data) => {
             console.log(data.toString());
         });
+
+
     }
 }
