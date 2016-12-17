@@ -4,3 +4,4 @@ data/
 dom4*
 node_modules/
 dist/
+npm-debug.log
