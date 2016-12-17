@@ -10,15 +10,15 @@ export class DomServer {
     }
 
     private initialize() {
-        let dominions = child_process.spawn(`${this.dom4}`,
+        let dominions = child_process.spawn(this.dom4,
             [
                 this.config.title,
-                "--port", `${this.config.port}`,
-                "--era", `${this.config.era}`,
+                "--port", this.config.port,
+                "--era", this.config.era,
                 "-T",
                 "-S",
                 "-o",
-                "--mapfile", `${this.config.map}`,
+                "--mapfile", this.config.map,
                 "--newgame"
             ]);
 
@@ -40,14 +40,14 @@ export class DomServer {
     }
 
     private launch() {
-        let dominions = child_process.spawn(`${this.dom4}`,
+        let dominions = child_process.spawn(this.dom4,
             [
                 this.config.title,
-                "--port", `${this.config.port}`,
+                "--port", this.config.port,
                 "-T",
                 "-S",
                 "--noclientstart",
-                "--era", `${this.config.era}`
+                "--era", this.config.era
             ]);
 
         dominions.stdout.on("data", (data: any) => {
@@ -69,7 +69,7 @@ export class DomServer {
     }
 
     public version(): void {
-        let dominions = child_process.spawn(`${this.dom4}`, ["--version"]);
+        let dominions = child_process.spawn(this.dom4, ["--version"]);
         dominions.stdout.on("data", (data) => {
             console.log(data.toString());
         });
