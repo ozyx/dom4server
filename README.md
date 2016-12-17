@@ -1,4 +1,6 @@
-usage: dom4 \[option(s)] [gamename]
+## dom4 command line switches
+```
+usage: dom4 [option(s)] [gamename]
 options:
 -v  --version       Print version number and exit
 -d                  Increase debug level
@@ -155,3 +157,4 @@ options:
     --alsa          Use direct alsa sound output
     --oss           Use direct oss sound output
 Example: dom4 -wm   Run Dominions 4 in a window and without music
+```
