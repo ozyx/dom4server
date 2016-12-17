@@ -3,20 +3,23 @@ import * as child_process from "child_process";
 import { DomConfig } from "./DomConfig";
 export class DomServer {
     private dom4: string;
-
-    constructor(domPath: string) {
+    private config: DomConfig;
+    constructor(config: DomConfig, domPath: string) {
+        this.config = config;
         this.dom4 = path.resolve(`${domPath}dom4.sh`);
     }
 
-    private launch(config: DomConfig) {
+    private initialize() {
         let dominions = child_process.spawn(`${this.dom4}`,
             [
-                config.title,
-                "--port", `${config.port}`,
+                this.config.title,
+                "--port", `${this.config.port}`,
+                "--era", `${this.config.era}`,
                 "-T",
                 "-S",
-                "--noclientstart",
-                "--era", `${config.era}`
+                "-o",
+                "--mapfile", `${this.config.map}`,
+                "--newgame"
             ]);
 
         dominions.stdout.on("data", (data: any) => {
@@ -28,7 +31,39 @@ export class DomServer {
         });
 
         dominions.on("exit", (code) => {
-            console.log(`exited with code ${code}`);
+            if (code === 0) {
+                // host();
+            } else {
+                console.log(`server exited with code ${code}`);
+            }
+        });
+    }
+
+    private launch() {
+        let dominions = child_process.spawn(`${this.dom4}`,
+            [
+                this.config.title,
+                "--port", `${this.config.port}`,
+                "-T",
+                "-S",
+                "--noclientstart",
+                "--era", `${this.config.era}`
+            ]);
+
+        dominions.stdout.on("data", (data: any) => {
+            console.log(data.toString());
+        });
+
+        dominions.stderr.on("data", (data: any) => {
+            console.log(data.toString());
+        });
+
+        dominions.on("exit", (code) => {
+            if (code === 0) {
+                this.initialize();
+            } else {
+                console.log(`server exited with code ${code}`);
+            }
         });
 
     }
@@ -40,7 +75,7 @@ export class DomServer {
         });
     }
 
-    public start(config: DomConfig) {
-        this.launch(config);
+    public start() {
+        this.launch();
     }
 }

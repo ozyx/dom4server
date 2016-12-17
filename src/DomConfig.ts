@@ -5,4 +5,6 @@ export interface DomConfig {
     port: string;
 
     era: string;
+
+    map: string;
 }
