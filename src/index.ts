@@ -3,42 +3,38 @@ import { DomConfig } from "./DomConfig";
 import * as fs from "fs";
 import * as http from "http";
 import * as path from "path";
+import * as express from "express";
+let app = express();
 
-let dispatch = require("dispatch");
-// let config: DomConfig = require("../config.json");
-// let domServer: DomServer = new DomServer(config, "./");
+const home = "src/index.html";
+let dominions4: DomServer;
 
-// domServer.version();
-// domServer.start();
+app.use(express.static("public"));
+app.get("/index.html", (req, res) => {
+    res.sendFile(path.resolve(home));
+});
 
-const port = 4200;
+app.get("/process_get", (req, res) => {
+    // Prepare output in JSON format
+    let response: DomConfig = req.query;
 
-let server = http.createServer(dispatch({
-    "/": {
-        GET: (req: any, res: any) => {
-            fs.readFile("./src/index.html", (err: any, data: any) => {
-                if (err) {
-                    console.error(err.message);
-                } else {
-                    res.writeHead(200, {
-                        "Content-Type": "text/html",
-                        "Content-Length": data.length
-                    });
-                    res.write(data);
-                    res.end();
-                }
-            });
+    dominions4 = new DomServer(response, "./");
+    dominions4.version((version) => {
+        console.log(version);
+        dominions4.start();
+        if (dominions4.isRunning()) {
+            res.end("dom4 is running");
+        } else {
+            res.end("dom4 not running");
         }
-    },
-    "/launch": {
-        GET: (req: any, res: any) => {
-            console.log("launch");
-            res.end();
-        }
-    }
-}));
+    });
+});
 
-// start server
-server.listen(port, () => {
-    console.log(`Server listening on: http://localhost:${port}`);
+let server = app.listen(8081, () => {
+
+    let host = server.address().address;
+    let port = server.address().port;
+
+    console.log(`Server listening at http://${host}:${port}`);
+
 });

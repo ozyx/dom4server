@@ -1,4 +1,20 @@
-hello world!!
-<form action="/launch" method="GET">
-    <button>Click Me!</button>
-</form>
+<html>
+
+<body>
+
+    <form action="http://127.0.0.1:8081/process_get" method="GET">
+        Title: <input type="text" name="title"> <br> 
+        Port: <input type="number" name="port"> <br>
+        Era: <select name="era">
+                <option value = "1">EA</option>
+                <option value = "2">MA</option>
+                <option value = "3">LA</option>
+             </select>
+             Map: <input type="text" name="map" <br>
+             <br><br>
+        <input type="submit" value="Start">
+    </form>
+
+</body>
+
+</html>
