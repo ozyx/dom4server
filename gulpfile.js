@@ -2,6 +2,7 @@ const gulp = require("gulp");
 const ts = require("gulp-typescript");
 const del = require("del");
 const tsProject = ts.createProject("tsconfig.json");
+const exec = require("child_process").exec;
 
 // clean the contents of the distribution directory
 gulp.task("clean", function () {
