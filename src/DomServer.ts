@@ -82,6 +82,6 @@ export class DomServer {
     }
 
     public isRunning(): boolean {
-        return this.dominions.pid !== undefined ? true : false;
+        return this.dominions.pid !== undefined;
     }
 }
